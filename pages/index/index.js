@@ -1,15 +1,3 @@
-/*
- * 
- * WordPres版微信小程序
- * author: jianbo
- * organization: 守望轩  www.watch-life.net
- * github:    https://github.com/iamxjb/winxin-app-watch-life.net
- * 技术支持微信号：iamxjb
- * 开源协议：MIT
- * 
- *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
- */
-
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
@@ -70,7 +58,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“' + config.getWebsiteName+'”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
+      title: 'KFAPE',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
@@ -102,11 +90,9 @@ Page({
           self.setData({
               page: self.data.page + 1
           });
-          console.log('当前页' + self.data.page);
           this.fetchPostsData(self.data);
       }
       else {
-          console.log('最后一页');
       }
    
   },
@@ -116,13 +102,11 @@ Page({
     self.fetchPostsData(self.data);
     self.setData({
         topNav: config.getIndexNav
-
     });
        
   },
   onShow: function (options){
       wx.setStorageSync('openLinkCount', 0);
-
   },  
   fetchTopFivePosts: function () {
     var self = this;
@@ -157,7 +141,6 @@ Page({
             }
      
     }).catch(function (response){
-            console.log(response); 
             self.setData({
                 showerror: "block",
                 floatDisplay: "none"
@@ -278,7 +261,6 @@ Page({
       self.setData({
         page: self.data.page + 1
       });
-      //console.log('当前页' + self.data.page);
       this.fetchPostsData(self.data);
     }
     else
@@ -292,7 +274,6 @@ Page({
   },
   // 跳转至查看文章详情
   redictDetail: function (e) {
-    // console.log('查看文章');
     var id = e.currentTarget.id,
       url = '../detail/detail?id=' + id;
     wx.navigateTo({
@@ -328,7 +309,6 @@ Page({
                   // 打开成功
               },
               fail: function (res) {
-                  console.log(res);
               }
           })
       }
@@ -336,7 +316,6 @@ Page({
   },
   // 跳转至查看小程序列表页面或文章详情页
   redictAppDetail: function (e) {
-      // console.log('查看文章');
       var id = e.currentTarget.id;
       var redicttype = e.currentTarget.dataset.redicttype;
       var url = e.currentTarget.dataset.url == null ? '':e.currentTarget.dataset.url;
@@ -371,14 +350,12 @@ Page({
                   // 打开成功
               },
               fail: function (res) {
-                  console.log(res);
               }
           })
       }
   },
   //返回首页
-  redictHome: function (e) {
-    //console.log('查看某类别下的文章');  
+  redictHome: function (e) { 
     var id = e.currentTarget.dataset.id,
       url = '/pages/index/index';
     wx.switchTab({
